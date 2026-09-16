@@ -1,0 +1,96 @@
+{
+  "manifest_version": 3,
+  "name": "Pistachio Garden Theme",
+  "version": "1.0.0",
+  "description": "A gentle Chrome theme with pistachio green, soft cream, and muted garden tones.",
+  "icons": {
+    "128": "logo/logo128.png"
+  },
+  "theme": {
+    "colors": {
+      "frame": [
+        119,
+        136,
+        115
+      ],
+      "frame_inactive": [
+        119,
+        136,
+        115
+      ],
+      "toolbar": [
+        210,
+        220,
+        182
+      ],
+      "tab_text": [
+        53,
+        67,
+        50
+      ],
+      "tab_background_text": [
+        241,
+        243,
+        224
+      ],
+      "tab_background_text_inactive": [
+        241,
+        243,
+        224
+      ],
+      "bookmark_text": [
+        53,
+        67,
+        50
+      ],
+      "toolbar_text": [
+        53,
+        67,
+        50
+      ],
+      "toolbar_button_icon": [
+        53,
+        67,
+        50
+      ],
+      "omnibox_background": [
+        252,
+        253,
+        247
+      ],
+      "omnibox_text": [
+        53,
+        67,
+        50
+      ],
+      "ntp_background": [
+        241,
+        243,
+        224
+      ],
+      "ntp_text": [
+        53,
+        67,
+        50
+      ],
+      "ntp_link": [
+        53,
+        67,
+        50
+      ],
+      "ntp_header": [
+        53,
+        67,
+        50
+      ],
+      "button_background": [
+        119,
+        136,
+        115
+      ]
+    },
+    "properties": {
+      "ntp_logo_alternate": 1
+    }
+  }
+}
