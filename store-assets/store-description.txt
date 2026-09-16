@@ -1,1 +1,5 @@
-Bring a little garden calm to your browser. Pistachio Garden Theme pairs muted green tabs with soft pistachio accents and a creamy green background for gentle, everyday browsing.
+Pistachio Garden Theme brings a quiet garden calm to Chrome: a muted green frame, a soft pistachio toolbar, and a creamy New Tab page, with deep green text that stays easy to read.
+
+Flat, solid colors only — no wallpaper, gradient, or texture. Active and inactive window frames share the same green, so the browser never shifts tone when you switch windows, and the New Tab wordmark uses Chrome's single-color theme mechanism to blend with your browser.
+
+The theme declares no permissions and leaves the pages you visit untouched. Switch back to the default look at any time from Chrome's Appearance settings.
