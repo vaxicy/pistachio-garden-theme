@@ -35,11 +35,15 @@ css += f'''
 
 def browser(bookmarks=False):
     bm='<div class="bookmarks"><span>▱ Bookmarks</span><span>▱ Reading</span><span>▱ Design</span><span>▱ Inspiration</span></div>' if bookmarks else ''
-    return '<div class="browser"><div class="tabs"><div class="tab active">New Tab <span class="close">×</span></div><div class="tab">Reading list <span class="close">×</span></div><span style="padding:10px">+</span><span style="margin-left:auto;padding:10px 12px;letter-spacing:22px;color:#FFFCF8">− □ ×</span></div><div class="tools"><span>←</span><span>→</span><span>↻</span><div class="omni">Search or type a URL</div><span>☆</span><span>⋮</span></div>'+bm+'<div class="content"><div class="google">Google</div><div class="search">Search Google or type a URL</div></div></div>'
+    tabs='<div class="tabs"><div class="tab active">New Tab <span class="close">×</span></div><div class="tab">Reading list <span class="close">×</span></div><span class="newtab">+</span><span class="wctl">−&nbsp;&nbsp;□&nbsp;&nbsp;×</span></div>'
+    tools='<div class="tools"><span>←</span><span>→</span><span>↻</span><div class="omni">Search or type a URL<span class="ai-chip">AI Mode</span></div><span>☆</span><span>⋮</span></div>'
+    shortcuts='<div class="shortcuts"><div class="shortcut"><div class="circle"><span class="yt"></span></div>YouTube</div><div class="shortcut"><div class="circle"><span class="cws"></span></div>Chrome Web Store</div><div class="shortcut"><div class="circle add">+</div>Add shortcut</div></div>'
+    links='<div class="ntp-links"><span>Gmail</span><span>Images</span><span class="apps"></span><span class="avatar"></span></div>'
+    return '<div class="browser">'+tabs+tools+bm+'<div class="content"><div class="google">Google</div><div class="search">Search Google or type a URL</div>'+shortcuts+'</div>'+links+'<div class="customize">✎ Customize Chrome</div></div>'
 
 def swatches():return '<div class="swatches">'+''.join(f'<div class="swatch" style="background:var(--{c})"></div>' for c in ('sand','milk','taupe','evergreen'))+'</div>'
 def page(body):
-    body=body.replace('<div class="search">Search Google or type a URL</div>', '<div class="search"><svg width="20" height="20" viewBox="0 0 24 24" aria-hidden="true"><circle cx="10" cy="10" r="6" fill="none" stroke="#62676D" stroke-width="2.5"/><path d="M15 15L21 21" stroke="#62676D" stroke-width="2.5"/></svg><span>Search Google or type a URL</span><svg style="margin-left:auto" width="19" height="22" viewBox="0 0 24 28" aria-hidden="true"><rect x="9" y="2" width="6" height="15" rx="3" fill="#4285F4"/><path d="M5 12v2a7 7 0 0 0 14 0v-2" fill="none" stroke="#EA4335" stroke-width="3"/><path d="M12 21v5" stroke="#34A853" stroke-width="3"/></svg><svg width="22" height="22" viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="5" width="16" height="15" rx="4" fill="none" stroke="#4285F4" stroke-width="2.5"/><circle cx="12" cy="12" r="3" fill="#4285F4"/><circle cx="20" cy="20" r="2.5" fill="#34A853"/></svg></div>')
+    body=body.replace('<div class="search">Search Google or type a URL</div>', '<div class="search"><svg width="20" height="20" viewBox="0 0 24 24" aria-hidden="true"><circle cx="10" cy="10" r="6" fill="none" stroke="#62676D" stroke-width="2.5"/><path d="M15 15L21 21" stroke="#62676D" stroke-width="2.5"/></svg><span>Search Google or type a URL</span><svg style="margin-left:auto" width="19" height="22" viewBox="0 0 24 28" aria-hidden="true"><rect x="9" y="2" width="6" height="15" rx="3" fill="#4285F4"/><path d="M5 12v2a7 7 0 0 0 14 0v-2" fill="none" stroke="#EA4335" stroke-width="3"/><path d="M12 21v5" stroke="#34A853" stroke-width="3"/></svg><svg width="22" height="22" viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="5" width="16" height="15" rx="4" fill="none" stroke="#4285F4" stroke-width="2.5"/><circle cx="12" cy="12" r="3" fill="#4285F4"/><circle cx="20" cy="20" r="2.5" fill="#34A853"/></svg><span class="ai-chip">AI Mode</span></div>')
     return '<!doctype html><html lang="en"><meta charset="utf-8"><style>'+css+'</style><body>'+body+'</body></html>'
 logo='data:image/png;base64,'+base64.b64encode((ROOT/'logo/logo128.png').read_bytes()).decode()
 css += """
@@ -99,6 +103,29 @@ css += """
 .poster .browser{height:550px}
 .poster:after{content:'';position:absolute;left:52px;top:345px;width:28px;height:120px;background:linear-gradient(to bottom,#778873 0 25%,#A1BC98 25% 50%,#D2DCB6 50% 75%,#F1F3E0 75%);border:1px solid #778873}
 .tea.small h1{font-size:32px}
+"""
+# --- Calibrated against a real screenshot of the installed theme (Chrome, New Tab page) ---
+# Only values Chrome computes itself are pinned here; the rest derives from manifest.json.
+css += """
+.google{color:#C3CC7B}
+.circle{background:#D3D99D;width:52px;height:52px;display:flex;align-items:center;justify-content:center;padding:0;margin:0 auto 14px;font-size:24px;line-height:1;color:#354332}
+.shortcuts{gap:40px;margin-top:34px}
+.shortcut{width:104px;font-size:13px;color:#354332;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.yt{width:22px;height:16px;border-radius:5px;background:#FF0033;position:relative}
+.yt:after{content:'';position:absolute;left:8px;top:3px;border-left:7px solid #FFFFFF;border-top:5px solid transparent;border-bottom:5px solid transparent}
+.cws{width:22px;height:22px;border-radius:50%;background:conic-gradient(#EA4335 0 33%,#FBBC05 33% 66%,#34A853 66% 100%);position:relative}
+.cws:after{content:'';position:absolute;left:6px;top:6px;width:10px;height:10px;border-radius:50%;background:#FFFFFF}
+.bookmarks{border-bottom:0}
+.omni{display:flex;align-items:center;gap:12px}
+.ai-chip{border:1px solid #C9CFC4;border-radius:999px;padding:2px 10px;font-size:11px;line-height:1.3;color:#354332;white-space:nowrap}
+.omni .ai-chip{margin-left:auto}
+.search .ai-chip{margin-left:6px}
+.ntp-links{position:absolute;right:28px;top:128px;display:flex;align-items:center;gap:20px;font-size:14px;color:#354332}
+.ntp-links .apps{width:20px;height:20px;background-image:radial-gradient(#5F6368 1.7px,transparent 1.8px);background-size:7px 7px}
+.ntp-links .avatar{width:28px;height:28px;border-radius:50%;background:#D3D99D;border:1px solid #B9C08F}
+.customize{position:absolute;right:24px;bottom:20px;background:#202124;color:#F1F3E0;border-radius:999px;padding:9px 18px;font-size:13px}
+.newtab{color:#F1F3E0;padding:10px 6px}
+.wctl{color:#F1F3E0;margin-left:auto;padding:10px 12px}
 """
 small='<div class="tea small"><img src="'+logo+'"><h1>Pistachio Garden</h1><div class="sub">CHROME THEME</div><p>A little green, a little calm.</p></div>'
 wide='<div class="poster"><h1>Pistachio Garden Theme</h1><p>A little green, a little calm.</p><div class="preview">'+browser(True)+'</div></div>'
